@@ -150,3 +150,33 @@ http://wiki.amperka.ru/%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D1%8B:troyka:q
      
     }
 ```
+http://wiki.amperka.ru/%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D1%8B:troyka-vibration-sensor
+```c++
+#define VIBRO_PIN             A5
+#define VIBRO_INTEGRATED_PIN  A4
+ #include <QuadDisplay2.h>
+#include <TroykaThermometer.h>
+TroykaThermometer thermometer(A0);
+QuadDisplay qd(9);
+void setup() 
+{
+  Serial.begin(9600);
+  qd.begin();
+}
+ 
+void loop()
+{
+  thermometer.read();
+  int vibroValue = analogRead(VIBRO_PIN);
+
+  int integratedVibroValue = analogRead(VIBRO_INTEGRATED_PIN);
+  Serial.print(vibroValue);
+  Serial.print("\t\t");
+  Serial.println(integratedVibroValue);
+
+ if (thermometer.getTemperatureC() > 25 && integratedVibroValue >50) {
+    qd.displayDigits(QD_F, QD_U, QD_C, QD_K); 
+    delay(1000);
+ }
+ }
+```
