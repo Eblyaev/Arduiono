@@ -128,3 +128,25 @@ http://wiki.amperka.ru/%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D1%8B:troyka-t
       delay(1000);
     }
 ```
+http://wiki.amperka.ru/%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D1%8B:troyka:quad-display-v2
+```c++
+    #include <QuadDisplay2.h>
+    #include <TroykaThermometer.h>
+    TroykaThermometer thermometer(A0);
+    QuadDisplay qd(9);
+
+     
+    void setup()
+    {
+      Serial.begin(9600);
+      qd.begin();
+    }
+     
+    void loop()
+    { 
+      thermometer.read();
+      qd.displayTemperatureC(thermometer.getTemperatureC());
+      delay(1000);
+     
+    }
+```
