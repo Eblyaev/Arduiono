@@ -68,3 +68,27 @@ void loop() {
 }
 
 ```
+
+```c++
+#include <RGBLed.h>
+
+#define RED_PIN 10
+#define BLUE_PIN 9
+#define GREEN_PIN 8
+
+RGBLed led(RED_PIN, GREEN_PIN, BLUE_PIN, RGBLed::COMMON_ANODE);
+
+void setup() {
+  pinMode(RED_PIN, OUTPUT);
+
+
+}
+
+void loop() {
+  
+  led.setColor(0, 0, 255);
+  led.flash(0, 0, 255, 100);
+  led.brightness(0, 0, 255, 10);
+}
+
+```
