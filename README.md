@@ -94,3 +94,37 @@ void loop() {
 }
 
 ```
+http://wiki.amperka.ru/%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D1%8B:troyka-temperature-sensor
+```c++
+
+    #include <TroykaThermometer.h>
+    
+    #define LED 7
+
+    TroykaThermometer thermometer(A0);
+     
+    void setup()
+    {
+      Serial.begin(9600);
+    }
+     
+    void loop(){
+      if (thermometer.getTemperatureC () < 15){
+        digitalWrite(LED, HIGH);
+      }
+      thermometer.read();
+     
+      Serial.print("Temperature is ");
+      Serial.print(thermometer.getTemperatureC());
+      Serial.println(" C");
+    
+      Serial.print("Temperature is ");
+      Serial.print(thermometer.getTemperatureK());
+      Serial.println(" K");
+     
+      Serial.print("Temperature is ");
+      Serial.print(thermometer.getTemperatureF());
+      Serial.println(" F");
+      delay(1000);
+    }
+```
